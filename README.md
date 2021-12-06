@@ -1,7 +1,7 @@
 # tenders
 
 App with API for Procurement in Ukraine
-
+Dev: Samasiuk Aliaksandr
 ## Getting Started
 
 This project is a starting point for a Flutter application.
