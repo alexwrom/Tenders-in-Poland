@@ -23,7 +23,8 @@ class _MorePageState extends State<MorePage> {
       isLoad = true;
     });
 
-    var response;
+    var response; // Запрос
+
     try {
       response = await http.get(url, headers: {'Accept': 'application/json'});
     } catch (error) {
