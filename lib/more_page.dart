@@ -49,6 +49,32 @@ class _MorePageState extends State<MorePage> {
     _Post();
   }
 
+  Widget _getCard(String name,
+      {bool addIcon = false, String addAfterStr = ''}) {
+    return Card(
+      color: secondColor,
+      child: ListTile(
+        title: Text(
+          '${name[0].toUpperCase() + name.substring(1).replaceAll('_', ' ')}:',
+          style: TextStyle(
+              fontSize: 16, color: textColor, fontWeight: FontWeight.bold),
+        ),
+        subtitle: Text(
+          '${posts[name]} ${addAfterStr}',
+          style: TextStyle(fontSize: 16, color: textColor),
+        ),
+        trailing: addIcon
+            ? Icon(
+                getCategory(
+                  posts['category'],
+                ),
+                color: getColorCategory(posts['category']),
+              )
+            : null,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -92,135 +118,12 @@ class _MorePageState extends State<MorePage> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        Card(
-                          color: secondColor,
-                          child: ListTile(
-                            title: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Category:',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: textColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child:
-                                    Icon(getCategory(posts['category']),
-                                        color: getColorCategory(posts['category'])),
-                                )
-                              ],
-                            ),
-                          ),
-                        ), // Category
-                        Card(color: secondColor,
-                          child: ListTile(
-                            title: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Title:',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: textColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    '${posts['title']}',
-                                    style:
-                                        TextStyle(fontSize: 20, color: textColor),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ), // Title
-                        Card(color: secondColor,
-                          child: ListTile(
-                            title: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Description:',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: textColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    '${posts['description']}',
-                                    style:
-                                        TextStyle(fontSize: 20, color: textColor),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ), // Description
-                        Card(color: secondColor,
-                          child: ListTile(
-                            title: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Deadline date:',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: textColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    '${posts['deadline_date']}',
-                                    style:
-                                        TextStyle(fontSize: 20, color: textColor),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ), // Deadline date
-                        Card(color: secondColor,
-                          child: ListTile(
-                            title: Row(
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Text(
-                                    'Awarded value:',
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: textColor,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 2,
-                                  child: Text(
-                                    '€ ${posts['awarded_value_eur']}',
-                                    style:
-                                        TextStyle(fontSize: 20, color: textColor),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ), // Awarded value
+                        _getCard('category', addIcon: true), // Category
+                        _getCard('title'), // Title
+                        _getCard('description'), // Description
+                        _getCard('deadline_date'), // Deadline date
+                        _getCard('awarded_value_eur',
+                            addAfterStr: '€'), // Awarded value
                       ],
                     ),
                   ),
