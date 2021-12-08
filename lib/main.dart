@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tenders/myconsts.dart';
-import 'package:tenders/home_page.dart';
+import 'package:tenders/widgets/home_page.dart';
 
 void main() => runApp(const MyApp());
 
