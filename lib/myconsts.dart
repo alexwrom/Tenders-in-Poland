@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'cubit/cubic.dart';
+import 'cubit/cubit.dart';
 
 enum Mode {modeTenders,modeDataOfTender}
 final String projectTitle = 'Tenders in Poland';

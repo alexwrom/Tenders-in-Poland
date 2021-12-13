@@ -1,4 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
 
+part 'data_of_tender.g.dart';
+
+@JsonSerializable()
 class DataOfTender {
   final String? description;
   final String? category;
@@ -8,13 +12,7 @@ class DataOfTender {
 
   DataOfTender({this.description,this.category,this.title,this.deadline_date,this.awarded_value_eur});
 
-  factory DataOfTender.fromJson(dynamic json) {
-    return DataOfTender(
-        description: json['description'],
-        category: json['category'],
-        title: json['title'],
-        deadline_date: json['deadline_date'],
-        awarded_value_eur: json['awarded_value_eur']
-    );
-  }
+  factory DataOfTender.fromJson(dynamic json) => _$DataOfTenderFromJson(json);
+
+  Map<String,dynamic> toJson() => _$DataOfTenderToJson(this);
 }
