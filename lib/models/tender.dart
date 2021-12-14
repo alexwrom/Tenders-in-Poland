@@ -1,6 +1,17 @@
+import 'package:dio_http/dio_http.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:retrofit/retrofit.dart';
 
 part 'tender.g.dart';
+
+
+@RestApi()
+abstract class RestTender {
+  factory RestTender(Dio dio, {String baseUrl}) = _RestTender;
+
+  @GET("")
+  Future<Page> getTender();
+}
 
 @JsonSerializable()
 class Tender {
@@ -11,7 +22,13 @@ class Tender {
   Tender({required this.id,required this.category,required this.title});
 
   factory Tender.fromJson(Map<String,dynamic> json) => _$TenderFromJson(json);
+}
 
-  Map<String, dynamic> toJson() => _$TenderToJson(this);
+@JsonSerializable()
+class Page {
+  final List<Tender> data;
+  Page({required this.data});
+
+  factory Page.fromJson(Map<String,dynamic> json) => _$PageFromJson(json);
 }
 

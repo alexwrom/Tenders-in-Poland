@@ -5,7 +5,8 @@ abstract class States {}
 class Loading extends States {}
 
 class LoadedTenders extends States {
-  List<dynamic> loadedTenders;
+  //List<dynamic> loadedTenders;
+  dynamic loadedTenders;
   LoadedTenders({required this.loadedTenders});
 }
 

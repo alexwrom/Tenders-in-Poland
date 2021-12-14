@@ -29,7 +29,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: ^0.13.0
+  dio_http: ^5.0.4
+  retrofit: ^3.0.0
+  retrofit_generator: ^3.0.0+2
   flutter_bloc: ^8.0.0
   json_annotation: ^4.4.0
 

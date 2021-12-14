@@ -13,3 +13,13 @@ Map<String, dynamic> _$TenderToJson(Tender instance) => <String, dynamic>{
       'category': instance.category,
       'title': instance.title,
     };
+
+Page _$PageFromJson(Map<String, dynamic> json) => Page(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => Tender.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$PageToJson(Page instance) => <String, dynamic>{
+      'data': instance.data,
+    };

@@ -1,7 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
 
-import 'package:http/http.dart' as http;
+import 'package:dio_http/dio_http.dart';
 import 'package:tenders/models/data_of_tender.dart';
 import 'package:tenders/models/tender.dart';
 
@@ -18,27 +17,19 @@ class TendersProvider {
     Future<List<Tender>> getTenders() async {
     HttpOverrides.global = MyHttpOverrides();
     final url = Uri.https('tenders.guru', 'api/pl/tenders', {'page': '1'});
-    final response =
-        await http.get(url, headers: {'Accept': 'application/json'});
-    if (response.statusCode == 200) {
-      final data = json.decode(response.body)['data'];
-      final  List<dynamic> tenderJson = data;
-      return tenderJson.map((json) => Tender.fromJson(json)).toList();
-    } else {
-       throw Exception('Error loading tenders');
-    }
+    final dio = Dio();
+    dio.options.headers[Headers.contentTypeHeader] = "application/json";
+    final tender = RestTender(dio,baseUrl: url.toString());
+    var response = tender.getTender();
+    return response.then((value) => value.data);
   }
 
   Future<DataOfTender> getDataOfTender(String tender_id) async {
     HttpOverrides.global = MyHttpOverrides();
-    final url = Uri.https('tenders.guru', 'api/pl/tenders/$tender_id');
-    final response =
-        await http.get(url, headers: {'Accept': 'application/json'});
-    if (response.statusCode == 200) {
-      //final DataOfTender dataTenderJson = json.decode(response.body);
-      return DataOfTender.fromJson(json.decode(response.body));
-    } else {
-      throw Exception('Error loading tenders');
-    }
+    final dio = Dio();
+    dio.options.headers[Headers.contentTypeHeader] = "application/json";
+    final dataOfTender = RestDataOfTender(dio);
+    var response = dataOfTender.getDataOfTender(tender_id);
+    return response;
   }
 }
