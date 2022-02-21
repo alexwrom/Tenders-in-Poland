@@ -1,0 +1,21 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+DataOfTenderModel _$DataOfTenderModelFromJson(Map<String, dynamic> json) =>
+    DataOfTenderModel(
+      description: json['description'],
+      category: json['category'],
+      title: json['title'],
+      deadline_date: json['deadline_date'],
+      awarded_value_eur: json['awarded_value_eur'],
+    );
+
+Map<String, dynamic> _$DataOfTenderModelToJson(DataOfTenderModel instance) =>
+    <String, dynamic>{
+      'description': instance.description,
+      'category': instance.category,
+      'title': instance.title,
+      'deadline_date': instance.deadline_date,
+      'awarded_value_eur': instance.awarded_value_eur,
+    };

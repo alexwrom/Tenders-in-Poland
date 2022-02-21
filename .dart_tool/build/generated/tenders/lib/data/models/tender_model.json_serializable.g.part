@@ -1,0 +1,26 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+TenderModel _$TenderModelFromJson(Map<String, dynamic> json) => TenderModel(
+      id: json['id'],
+      category: json['category'],
+      title: json['title'],
+    );
+
+Map<String, dynamic> _$TenderModelToJson(TenderModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'category': instance.category,
+      'title': instance.title,
+    };
+
+Page _$PageFromJson(Map<String, dynamic> json) => Page(
+      data: (json['data'] as List<dynamic>)
+          .map((e) => TenderModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$PageToJson(Page instance) => <String, dynamic>{
+      'data': instance.data,
+    };
